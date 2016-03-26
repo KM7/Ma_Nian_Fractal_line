@@ -16,7 +16,6 @@ boolean start=false;
 boolean startGlitchFlag = false;
 boolean slit_glitchFlag = false;
 int n=0;
-int lines_num=720;
 
 
 
@@ -54,7 +53,10 @@ void draw() {
     println(mouseX, mouseY);
   }
   if(slit_glitchFlag){
-    slit_glitch(0, 0, width, height, 0.8);
+    slit_glitch(0, 0, width, height, 0,50);
+  }else{
+    //set threashold as 0 indicate it never really happens
+    slit_glitch(0, 0, width, height, 1,50);
   }
 }
 void newTree() {

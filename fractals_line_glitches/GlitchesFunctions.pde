@@ -1,13 +1,15 @@
-void slit_glitch(int sX,int sY,int w,int h,float threashhold) {
+void slit_glitch(int sX,int sY,int w,int h,float threashhold,int nums) {
+  int temp_block_size=height/nums;
   loadPixels();
   color[] tempColor2=new color[pixels.length];
   for (int i=0; i<pixels.length; i++) {
     tempColor2[i]=pixels[i];
   }
   //println(pixels.length);
+  println(colorList.size(),temp_block_size);
   colorList.add(tempColor2);
   n++;
-  if (n==lines_num) {
+  if (n>nums) {
     n=0;  
     start=true;
   }
@@ -15,8 +17,10 @@ void slit_glitch(int sX,int sY,int w,int h,float threashhold) {
     //int scale=(height)/lines_num;
     for (int k=sY; k<h; k++) {
       for (int p=sX; p<w; p++) {
-        if (k<lines_num) {
-          pixels[k*width+p]=colorList.get(k)[k*width+p];
+        if (k<nums) {
+          for (int q=0;q<temp_block_size;q++){
+          pixels[(k*temp_block_size+q)*width+p]=colorList.get(k)[(k*temp_block_size+q)*width+p];
+          }
         }
       }
     }
