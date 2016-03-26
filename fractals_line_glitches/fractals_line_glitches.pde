@@ -15,7 +15,6 @@ boolean drawBranchFlag = false;
 boolean start=false;
 boolean startGlitchFlag = false;
 boolean slit_glitchFlag = false;
-int n=0;
 
 
 
@@ -56,10 +55,10 @@ void draw() {
     //the threashold value indicates how often does the glitch actually occurs.
     //value 1 means it always happen
     //value 0 means it never happen
-    slit_glitch(0, 0, width, height, 1,50);
+    slit_glitch(0, 0, width, height, 1,20);
   }else{
     //set threashold as 0 indicate it never really happens
-    slit_glitch(0, 0, width, height, 0,50);
+    slit_glitch(0, 0, width, height, 0,20);
   }
 }
 void newTree() {

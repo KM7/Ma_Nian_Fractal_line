@@ -1,3 +1,8 @@
+/**
+
+@para nums This indicates how many 
+**/
+
 void slit_glitch(int sX,int sY,int w,int h,float threashhold,int nums) {
   int temp_block_size=height/nums;
   loadPixels();
@@ -8,9 +13,8 @@ void slit_glitch(int sX,int sY,int w,int h,float threashhold,int nums) {
   //println(pixels.length);
   println(colorList.size(),temp_block_size);
   colorList.add(tempColor2);
-  n++;
-  if (n>nums) {
-    n=0;  
+  
+  if (frameCount>nums) {
     start=true;
   }
   if (start==true) {
