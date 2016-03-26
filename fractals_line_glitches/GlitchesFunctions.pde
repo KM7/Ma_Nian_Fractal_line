@@ -32,7 +32,7 @@ void slit_glitch(int sX,int sY,int w,int h,float threashhold,int nums) {
   //for (int i =0; i<buffer.size(); i++) {
   //  image(buffer.get(i).get(0, i*scale, width*2, (i+1)*scale), 0, i*scale);
   //}
-  if (random(1)<threashhold) {
+  if (random(1)>threashhold) {
     for (int i=0; i<pixels.length; i++) {
       pixels[i]=tempColor2[i];
     }
