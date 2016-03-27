@@ -1,6 +1,9 @@
 /**
-
-@para nums This indicates how many 
+@param sX startX position
+@param sY startY position
+@param w endX position
+@param h endY postion
+@param nums This indicates how many blocks it will be split into.
 **/
 
 void slit_glitch(int sX,int sY,int w,int h,float threashhold,int nums) {
@@ -69,4 +72,16 @@ void digital_glitch(int size) {
     stroke(0, 255, 0);
   }
   line(new_random, 0, new_random, height*2);
+}
+
+
+void fft_glitch(float[] fft) {
+  loadPixels();
+  color[] tempColor2=new color[pixels.length];
+  for (int i=0; i<pixels.length; i++) {
+    tempColor2[i]=pixels[i];
+  }
+  //println(pixels.length);
+    updatePixels();
+
 }

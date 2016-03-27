@@ -60,6 +60,9 @@ void draw() {
     //set threashold as 0 indicate it never really happens
     slit_glitch(0, 0, width, height, 0,20);
   }
+  
+  temp_draw_function(20);
+  
 }
 void newTree() {
   _trunk = new Branch(1, 0, width/2, 50, 1000);

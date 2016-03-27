@@ -38,7 +38,14 @@ class VizAudio {
     m_faudioX=(faudio[3]+faudio[4])/2.;
   }
 
-  float getValue() {
-    return in.left.get(0);
+  float[] getValue(int size) {
+    int temp_value=in.bufferSize()/size;
+    float[] temp_float=new float[size];
+    
+      for(int i = 0; i <temp_float.length; i++)
+  {
+    temp_float[i] =in.left.get(temp_value*i);
+  }
+    return temp_float;
   }
 }
