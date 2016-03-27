@@ -2,7 +2,7 @@ import ddf.minim.*;
 import ddf.minim.analysis.*;
 
 int _numChildren = 3;
-int _maxLevels =5;
+int _maxLevels =6;
 Minim minim;
 VizAudio vizAudio;
 Branch _trunk;
@@ -63,7 +63,8 @@ void draw() {
   //this define how many pieces you want to split
   temp_draw_function(20);
   //this define the fft information 
-  fft_glitch(vizAudio.getValue(20),100);
+  fft_glitch(vizAudio.getValue(height/2),width/100);
+  camera_glitch(vizAudio.getLevel(0.5),vizAudio.getLevel(0.5),0.5);
   
 }
 void newTree() {

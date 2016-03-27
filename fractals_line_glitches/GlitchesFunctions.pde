@@ -1,12 +1,12 @@
 /**
-@param sX startX position
-@param sY startY position
-@param w endX position
-@param h endY postion
-@param nums This indicates how many blocks it will be split into.
-**/
+ @param sX startX position
+ @param sY startY position
+ @param w endX position
+ @param h endY postion
+ @param nums This indicates how many blocks it will be split into.
+ **/
 
-void slit_glitch(int sX,int sY,int w,int h,float threashhold,int nums) {
+void slit_glitch(int sX, int sY, int w, int h, float threashhold, int nums) {
   int temp_block_size=height/nums;
   loadPixels();
   color[] tempColor2=new color[pixels.length];
@@ -14,9 +14,9 @@ void slit_glitch(int sX,int sY,int w,int h,float threashhold,int nums) {
     tempColor2[i]=pixels[i];
   }
   //println(pixels.length);
-  println(colorList.size(),temp_block_size);
+  println(colorList.size(), temp_block_size);
   colorList.add(tempColor2);
-  
+
   if (frameCount>nums) {
     start=true;
   }
@@ -25,8 +25,8 @@ void slit_glitch(int sX,int sY,int w,int h,float threashhold,int nums) {
     for (int k=sY; k<h; k++) {
       for (int p=sX; p<w; p++) {
         if (k<nums) {
-          for (int q=0;q<temp_block_size;q++){
-          pixels[(k*temp_block_size+q)*width+p]=colorList.get(k)[(k*temp_block_size+q)*width+p];
+          for (int q=0; q<temp_block_size; q++) {
+            pixels[(k*temp_block_size+q)*width+p]=colorList.get(k)[(k*temp_block_size+q)*width+p];
           }
         }
       }
@@ -47,7 +47,7 @@ void slit_glitch(int sX,int sY,int w,int h,float threashhold,int nums) {
   }
 }
 
-void onscene_glitch(int size, int max_num,float threashhold) {
+void onscene_glitch(int size, int max_num, float threashhold) {
   int start_point=int(random(height-size));
   for (int i=0; i<max_num; i++) {
     PImage temp_canvas=get(0, start_point, width*2, int(random(size)));
@@ -76,40 +76,47 @@ void digital_glitch(int nums) {
 
 //take an float array with fft information
 /**
-@param fft float array input, with the fft information
-@param amount how much glitch amount you want, 1~500 normally make sense.
-
-**/
-void fft_glitch(float[] fft,int amount) {
-      int nums=fft.length;
-      int temp_block_size=height/nums;
-      //println(int(temp_f[10]*temp_block_size));
+ @param fft float array input, with the fft information
+ @param amount how much glitch amount you want, 1~500 normally make sense.
+ 
+ **/
+void fft_glitch(float[] fft, int amount) {
+  int nums=fft.length;
+  int temp_block_size=height/nums;
+  //println(int(temp_f[10]*temp_block_size));
   loadPixels();
+  println(fft[fft.length-10]);
   //copy the color for now
   color[] tempColor2=new color[pixels.length];
   for (int i=0; i<pixels.length; i++) {
     tempColor2[i]=pixels[i];
   }
-   for (int i=0; i<pixels.length; i++) {
+  for (int i=0; i<pixels.length; i++) {
     pixels[i]=color(0);
   }
-  updatePixels();
-    loadPixels();
 
-     for (int k=0; k<height; k++) {
-      for (int p=0; p<width; p++) {
-        if (k<nums) {
-          int shift=int(fft[k]*temp_block_size*amount);
-          for (int q=0;q<temp_block_size;q++){
-            if (p+shift<width&&(p+shift)>=0){
-          pixels[(k*temp_block_size+q)*width+p+shift]=tempColor2[(k*temp_block_size+q)*width+p];
-        }
+  for (int k=0; k<height; k++) {
+    for (int p=0; p<width; p++) {
+      if (k<nums) {
+        int shift=int(fft[k]*temp_block_size*amount);
+        for (int q=0; q<temp_block_size; q++) {
+          if (p+shift<width&&(p+shift)>=0) {
+            pixels[(k*temp_block_size+q)*width+p+shift]=tempColor2[(k*temp_block_size+q)*width+p];
           }
         }
       }
     }
+  }
 
   //println(pixels.length);
-    updatePixels();
+  updatePixels();
+}
 
+void camera_glitch(float glitch_x, float glitch_y, float threashold) {
+
+  beginCamera();
+  camera();
+  rotateX(PI*random(-glitch_x/2, glitch_x/2));
+  rotateY(PI*random(-glitch_y/2, glitch_y/2));
+  endCamera();
 }

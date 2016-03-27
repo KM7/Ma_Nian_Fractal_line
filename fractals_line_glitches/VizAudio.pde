@@ -38,7 +38,12 @@ class VizAudio {
     m_faudioX=(faudio[3]+faudio[4])/2.;
   }
 
+float getLevel(float level){
+  return in.left.level()*level;
+}
+
   float[] getValue(int size) {
+    println(in.bufferSize());
     int temp_value=in.bufferSize()/size;
     float[] temp_float=new float[size];
     
@@ -46,6 +51,7 @@ class VizAudio {
   {
     temp_float[i] =in.left.get(temp_value*i);
   }
+  println(temp_float[size-10]);
     return temp_float;
   }
 }
