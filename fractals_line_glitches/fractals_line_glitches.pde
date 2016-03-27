@@ -2,7 +2,7 @@ import ddf.minim.*;
 import ddf.minim.analysis.*;
 
 int _numChildren = 3;
-int _maxLevels =7;
+int _maxLevels =5;
 Minim minim;
 VizAudio vizAudio;
 Branch _trunk;
@@ -19,7 +19,7 @@ boolean slit_glitchFlag = false;
 
 
 void setup() {
-  size(1280, 768, P3D);
+  size(1280, 720, P3D);
   smooth();
   noFill();
   newTree();
@@ -48,7 +48,6 @@ void draw() {
   if (startGlitchFlag) {
     onscene_glitch(15, 3, 0.9);
     digital_glitch(2);
-    
     println(mouseX, mouseY);
   }
   if(slit_glitchFlag){
@@ -61,7 +60,10 @@ void draw() {
     slit_glitch(0, 0, width, height, 0,20);
   }
   
+  //this define how many pieces you want to split
   temp_draw_function(20);
+  //this define the fft information 
+  fft_glitch(vizAudio.getValue(20),100);
   
 }
 void newTree() {

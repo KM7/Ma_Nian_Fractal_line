@@ -62,8 +62,8 @@ void onscene_glitch(int size, int max_num,float threashhold) {
   }
 }
 
-void digital_glitch(int size) {
-  int new_random=int(random(width-size));
+void digital_glitch(int nums) {
+  int new_random=int(random(width));
   if (int(random(3))==0) {
     stroke(255, 0, 0);
   } else if (int(random(3))==0) {
@@ -74,13 +74,41 @@ void digital_glitch(int size) {
   line(new_random, 0, new_random, height*2);
 }
 
+//take an float array with fft information
+/**
+@param fft float array input, with the fft information
+@param amount how much glitch amount you want, 1~500 normally make sense.
 
-void fft_glitch(float[] fft) {
+**/
+void fft_glitch(float[] fft,int amount) {
+      int nums=fft.length;
+      int temp_block_size=height/nums;
+      //println(int(temp_f[10]*temp_block_size));
   loadPixels();
+  //copy the color for now
   color[] tempColor2=new color[pixels.length];
   for (int i=0; i<pixels.length; i++) {
     tempColor2[i]=pixels[i];
   }
+   for (int i=0; i<pixels.length; i++) {
+    pixels[i]=color(0);
+  }
+  updatePixels();
+    loadPixels();
+
+     for (int k=0; k<height; k++) {
+      for (int p=0; p<width; p++) {
+        if (k<nums) {
+          int shift=int(fft[k]*temp_block_size*amount);
+          for (int q=0;q<temp_block_size;q++){
+            if (p+shift<width&&(p+shift)>=0){
+          pixels[(k*temp_block_size+q)*width+p+shift]=tempColor2[(k*temp_block_size+q)*width+p];
+        }
+          }
+        }
+      }
+    }
+
   //println(pixels.length);
     updatePixels();
 
