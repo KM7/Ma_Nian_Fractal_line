@@ -9,7 +9,7 @@ boolean mouthFlag = false;
 float poseScale;
 PVector posePosition = new PVector();
 PVector poseOrientation = new PVector();
-int note_length_ms=300;
+int note_length_ms=20;
 // gesture
 float mouthHeight;
 float mouthWidth;
