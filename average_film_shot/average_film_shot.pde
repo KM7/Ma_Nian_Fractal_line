@@ -79,3 +79,12 @@ background(255);
 }
   }
 }
+
+void keyPressed() {
+  if (key == 'k'||key=='K') {
+    switch_num =switch_num+1;
+    if (switch_num>5){
+      switch_num=0;
+    }
+  } 
+}
