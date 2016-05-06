@@ -4,14 +4,16 @@ Movie myMovie;
 
 ArrayList<PImage> buffer=new ArrayList<PImage>();
 int n=0;
-int upper_bound=12;
+int upper_bound=2;
 int switch_num=0;
+int leap=1;
 
 void setup() {
-  size(1280, 360);
+  size(640, 180);
   myMovie = new Movie(this, "movie.mov");
   myMovie.loop();
   buffer.add(get());
+  //frameRate(60);
 
 }
 
@@ -20,7 +22,7 @@ void draw() {
   PImage tempimg=myMovie.get(myMovie.width/2,0,5,myMovie.height);
   
   image(tempimg, 0, 0,5,height);
-  image(buffer.get(buffer.size()-1), 1, 0,width,height);
+  image(buffer.get(buffer.size()-1), leap, 0,width,height);
    loadPixels();
    update_time();
    buffer.add(get());
