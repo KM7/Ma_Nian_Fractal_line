@@ -4,11 +4,11 @@ Capture cam;
 
 ArrayList<PImage> buffer=new ArrayList<PImage>();
 int n=0;
-int upper_bound=12;
+int upper_bound=5;
 int switch_num=0;
 
 void setup() {
-  size(1280, 360);
+  size(640, 180);
 
   String[] cameras = Capture.list();
   
