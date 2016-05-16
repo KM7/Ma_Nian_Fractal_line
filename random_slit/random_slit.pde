@@ -27,7 +27,7 @@ void draw() {
         
   for (int i=0;i<lines;i++){
    //println(i*single_height);
-  draw_it(i*single_height,single_height,time[i]);
+  draw_it(i*single_height,single_height,time[i],false);
   }
       updatePixels();
   }
@@ -35,14 +35,23 @@ void draw() {
   buffer.add(myMovie.pixels.clone());
 }
 
-void draw_it(int start,int theight,int frame_num){
-
+void draw_it(int start,int theight,int frame_num,boolean vertical){
+if (vertical){
    for (int i=0;i<myMovie.width;i++){
      for(int j=start;j<start+theight;j++){
        //pixels[j*width+i]=color(22,3,3);
        pixels[j*width+i]=buffer.get(frame_num)[j*myMovie.width+i];
      }
   } 
+  
+}else{
+     for (int i=start;i<start+theight;i++){
+     for(int j=0;j<myMovie.width;j++){
+       //pixels[j*width+i]=color(22,3,3);
+       pixels[j*width+i]=buffer.get(frame_num)[j*myMovie.width+i];
+     }
+  } 
+}
 }
 
 void update_time(){
@@ -95,7 +104,7 @@ void movieEvent(Movie m) {
 }
 
 void shuffle_it(){
-  if (frameCount%30==0){
+  if (frameCount%3==0){
      shuffle_timeline();
   } 
 }
