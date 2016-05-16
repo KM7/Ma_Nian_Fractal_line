@@ -53,7 +53,7 @@ n=n+1;
 
 
 void pastFusion(){
-background(255);
+//background(255);
 //DARKEST DIFFERENCE EXCLUSION MULTIPLY HARD_LIGHT SOFT_LIGHT
   for (int k=0;k<buffer.size();k++){
   switch(switch_num){
