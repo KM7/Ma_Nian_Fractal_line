@@ -6,7 +6,7 @@ ArrayList<color []> buffer=new ArrayList<color []>();
 int n=0;
 int switch_num=0;
 int lines=640;
-int upper_bound=640;
+int upper_bound=320;
 int single_height;
 int[] time=new int[lines];
 int applys;
@@ -52,7 +52,6 @@ void draw() {
       for (int i=0;i<time.length;i++){
        point(i,time[i]);
       }
-
   }
   
 }
@@ -60,8 +59,8 @@ void draw() {
 void draw_it(int start,int theight,int frame_num,boolean vertical){
 if (vertical){
   int temp_w=start+theight;
-  if (start+theight>myMovie.width){
-    temp_w=myMovie.width;
+  if (start+theight>height){
+    temp_w=height;
   }
   
    for (int i=0;i<myMovie.width;i++){
@@ -73,11 +72,9 @@ if (vertical){
   
 }else{
     int temp_h=start+theight;
-  if (start+theight>myMovie.height){
-    temp_h=myMovie.height;
+  if (start+theight>width){
+    temp_h=width;
   }
-  
-  
   
      for (int i=start;i<temp_h;i++){
      for(int j=0;j<myMovie.height;j++){
