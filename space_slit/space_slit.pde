@@ -15,8 +15,8 @@ boolean debug=false;
 
 
 void setup() {
-  size(640, 360);
-  myMovie = new Movie(this, "m2.mov");
+  size(1920, 1080);
+  myMovie = new Movie(this, "core.mov");
   myMovie.loop();
   if (horizontal){
   single_height=height/lines;
@@ -72,7 +72,14 @@ if (vertical){
   } 
   
 }else{
-     for (int i=start;i<start+theight;i++){
+    int temp_h=start+theight;
+  if (start+theight>myMovie.height){
+    temp_h=myMovie.height;
+  }
+  
+  
+  
+     for (int i=start;i<temp_h;i++){
      for(int j=0;j<myMovie.height;j++){
        //pixels[j*width+i]=color(22,3,3);
        pixels[j*width+i]=buffer.get(frame_num)[j*myMovie.width+i];
