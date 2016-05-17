@@ -7,11 +7,11 @@ int n=0;
 int upper_bound=240;
 int switch_num=0;
 int lines=10;
-int single_height;
+float single_height;
 int[] time=new int[lines];
 
 void setup() {
-  size(480, 480);
+  size(600, 480);
   myMovie = new Movie(this, "movie.mov");
   myMovie.loop();
   single_height=height/lines;
@@ -27,7 +27,7 @@ void draw() {
         
   for (int i=0;i<lines;i++){
    //println(i*single_height);
-  draw_it(i*single_height,single_height,time[i],false);
+  draw_it(int(i*single_height),single_height,time[i],false);
   }
       updatePixels();
   }
@@ -35,7 +35,7 @@ void draw() {
   buffer.add(myMovie.pixels.clone());
 }
 
-void draw_it(int start,int theight,int frame_num,boolean vertical){
+void draw_it(int start,float theight,int frame_num,boolean vertical){
 if (vertical){
    for (int i=0;i<myMovie.width;i++){
      for(int j=start;j<start+theight;j++){
@@ -46,7 +46,7 @@ if (vertical){
   
 }else{
      for (int i=start;i<start+theight;i++){
-     for(int j=0;j<myMovie.width;j++){
+     for(int j=0;j<myMovie.height;j++){
        //pixels[j*width+i]=color(22,3,3);
        pixels[j*width+i]=buffer.get(frame_num)[j*myMovie.width+i];
      }
@@ -104,7 +104,7 @@ void movieEvent(Movie m) {
 }
 
 void shuffle_it(){
-  if (frameCount%3==0){
+  if (frameCount%30==0){
      shuffle_timeline();
   } 
 }
