@@ -4,9 +4,9 @@ Movie myMovie;
 
 ArrayList<color []> buffer=new ArrayList<color []>();
 int n=0;
-int upper_bound=360;
 int switch_num=0;
-int lines=180;
+int lines=640;
+int upper_bound=640;
 int single_height;
 int[] time=new int[lines];
 int applys;
@@ -15,8 +15,8 @@ boolean debug=false;
 
 
 void setup() {
-  size(1920, 1080);
-  myMovie = new Movie(this, "core.mov");
+  size(1280, 720);
+  myMovie = new Movie(this, "720.mov");
   myMovie.loop();
   if (horizontal){
   single_height=height/lines;
@@ -152,6 +152,15 @@ void gaussien_timeline(){
     time[i]=int((float)normValue(i,time.length/2,30,upper_bound-1));
   }
 
+}
+
+void mousePressed(){
+int std=int(map(mouseY,0,height,0,height/2));
+int mean=int(map(mouseX,0,width,1,time.length-1));
+
+  for (int i=0;i<time.length;i++){
+    time[i]=int((float)normValue(i,mean,std,upper_bound-1));
+  }
 }
 
 
